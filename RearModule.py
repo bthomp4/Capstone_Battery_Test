@@ -23,6 +23,17 @@ import RPi.GPIO as GPIO
 from multiprocessing import Process
 from picamera import PiCamera
 
+# Define GPIO to use on Pi
+def GPIO_TRIGGER1 = 23
+def GPIO_ECHO1    = 24
+def GPIO_LED1     = 17
+def GPIO_LED2     = 27
+def GPIO_TRIGGER2 = 5
+def GPIO_ECHO2    = 6
+
+# Speed of sound in in/s at temperature
+def speedSound = 13500 # in/s
+
 
 # ---------------------------------------------------
 # measure1 takes a measurement from the first sensor
@@ -107,17 +118,6 @@ def SideSensors():
   # Use BCM GPIO references
   # instead of physical pin numbers
   GPIO.setmode(GPIO.BCM)
-
-  # Define GPIO to use on Pi
-  GPIO_TRIGGER1 = 23
-  GPIO_ECHO1    = 24
-  GPIO_LED1     = 17
-  GPIO_LED2     = 27
-  GPIO_TRIGGER2 = 5
-  GPIO_ECHO2    = 6
-
-  # Speed of sound in in/s at temperature
-  speedSound = 13500 # in/s
 
   print("Ultrasonic Measurement")
 

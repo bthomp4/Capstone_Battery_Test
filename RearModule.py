@@ -22,6 +22,7 @@ import time
 import RPi.GPIO as GPIO
 from multiprocessing import Process
 from picamera import PiCamera
+import os
 
 # Define GPIO to use on Pi
 def GPIO_TRIGGER1 = 23
@@ -147,6 +148,8 @@ def SideSensors():
     print("Distance Sensor 1\tDistance Sensor 2") 
     while True:
       distance1 = measure_average1()
+	  os.system("bash -c 'ping -w 1 umbc.edu'")
+	  #ping umbc.edu
       # printing distance for know will eventually delete this
       # print("Distance Sensor 1: %d inches" %distance)
       # if there is something less than 4 ft away from sensor
@@ -157,6 +160,8 @@ def SideSensors():
         GPIO.output(GPIO_LED1, False)
     
       distance2 = measure_average2()
+	  os.system("bash -c 'ping -w 1 umbc.edu'")
+	  #ping -w 1 umbc.edu
  
       # print("Distance Sensor 2: %d inches" % distance)
       if distance2 <= 48:
@@ -187,6 +192,8 @@ def TakePictures():
     #Used to take a still picture
     picture = ('test.jpg') # Made this just test.jpg so we dont overuse memory
     camera.capture(picture)
+	os.system("bash -c 'ping -w 1 umbc.edu'")
+	#ping umbc.edu
 
     camera.stop_preview()
 	

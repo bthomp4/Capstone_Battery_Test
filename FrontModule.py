@@ -137,7 +137,7 @@ def updateLEDs():
     # the user seeing lots of unnecessary error
     # messages.
     try:
-    print("Distance Recorded at Front Sensor") 
+        print("Distance Recorded at Front Sensor") 
     while True:
         
         # Get Distance data from front sensor

@@ -46,10 +46,10 @@ def measure1():
     start = time.time()
     
     while GPIO.input(GPIO_ECHO1)==0:
-    start = time.time()
+        start = time.time()
 
     while GPIO.input(GPIO_ECHO1)==1:
-    stop = time.time()
+        stop = time.time()
 
     elapsed = stop-start
     distance = (elapsed * speedSound)/2
@@ -84,10 +84,10 @@ def measure2():
     start = time.time()
     
     while GPIO.input(GPIO_ECHO2)==0:
-    start = time.time()
+        start = time.time()
 
     while GPIO.input(GPIO_ECHO2)==1:
-    stop = time.time()
+        stop = time.time()
 
     elapsed = stop-start
     distance = (elapsed * speedSound)/2
@@ -139,7 +139,7 @@ def SideSensors():
     # the user seeing lots of unnecessary error
     # messages.
     try:
-    print("Distance Sensor 1\tDistance Sensor 2") 
+        print("Distance Sensor 1\tDistance Sensor 2") 
     while True:
         distance1 = measure_average1()
         os.system("bash -c 'ping -w 1 umbc.edu'")
@@ -167,13 +167,13 @@ def TakePictures():
     camera = PiCamera()
 
     for i in range(NUM_PICTURES):
-    camera.start_preview()
-    time.sleep(SLEEP_TIME) # Sleep for SLEEP_TIME seconds
-    #Used to take a still picture
-    picture = ('test.jpg') # Made this just test.jpg so we dont overuse memory
-    camera.capture(picture)
-    os.system("bash -c 'ping -w 1 umbc.edu'")
-    #ping umbc.edu
+        camera.start_preview()
+        time.sleep(SLEEP_TIME) # Sleep for SLEEP_TIME seconds
+        #Used to take a still picture
+        picture = ('test.jpg') # Made this just test.jpg so we dont overuse memory
+        camera.capture(picture)
+        os.system("bash -c 'ping -w 1 umbc.edu'")
+        #ping umbc.edu
 
     camera.stop_preview()
     

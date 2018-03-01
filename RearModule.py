@@ -20,7 +20,6 @@
 from __future__ import print_function
 import time
 import RPi.GPIO as GPIO
-from multiprocessing import Process
 from picamera import PiCamera
 import os
 
@@ -113,18 +112,9 @@ def measure_average2():
 # ----------------------------------------------------
 # Main Script for Side Sensors
 # ----------------------------------------------------
-def SideSensors():
-    # Use BCM GPIO references
-    # instead of physical pin numbers
-    GPIO.setmode(GPIO.BCM)
+def UpdateSideSensors():
 
     print("Ultrasonic Measurement")
-
-    # Set pins as output and input 
-    GPIO.setup(GPIO_TRIGGER1,GPIO.OUT)    # Trigger 1
-    GPIO.setup(GPIO_ECHO1,GPIO.IN)        # Echo 1
-    GPIO.setup(GPIO_TRIGGER2,GPIO.OUT)    # Tigger Trigger 2 
-    GPIO.setup(GPIO_ECHO2,GPIO.IN)        # ECHO 2
 
     # Set trigger to False (Low)
     GPIO.output(GPIO_TRIGGER1, False)
@@ -132,49 +122,30 @@ def SideSensors():
 
     # Allow module to settle
     time.sleep(0.5)
-
-    # Wrap main content in a try block so we can
-    # catch the user pressing CTRL-C and run the
-    # GPIO cleanup function. This will also prevent
-    # the user seeing lots of unnecessary error
-    # messages.
-    try:
-        print("Distance Sensor 1\tDistance Sensor 2") 
-        while True:
-            distance1 = measure_average1()
-            os.system("bash -c 'ping -w 1 umbc.edu'")
-            #ping umbc.edu
+    print("Distance Sensor 1\tDistance Sensor 2") 
+    distance1 = measure_average1()
+    os.system("bash -c 'ping -w 1 umbc.edu'")
     
-            distance2 = measure_average2()
-            os.system("bash -c 'ping -w 1 umbc.edu'")
-            #ping -w 1 umbc.edu
-    
-            print(int(distance1), "inches\t\t", int(distance2), "inches")
-            time.sleep(0.5)
+    distance2 = measure_average2()
+    os.system("bash -c 'ping -w 1 umbc.edu'")     
+    print(int(distance1), "inches\t\t", int(distance2), "inches")
 
-    except KeyboardInterrupt:
-        # User pressed CTRL-C
-        # Reset GPIO settings
-        GPIO.cleanup()
+
+
     
 # -----------------------------------------------------------------
 # Main Script for taking pictures with the camera
 # -----------------------------------------------------------------
-def TakePictures():
-    NUM_PICTURES = 1200 # Will take pics for 10 minutes
-    SLEEP_TIME = 50/100 
+def TakePicture(): 
 
     camera = PiCamera()
-
-    for i in range(NUM_PICTURES):
-        camera.start_preview()
-        time.sleep(SLEEP_TIME) # Sleep for SLEEP_TIME seconds
-        #Used to take a still picture
-        picture = ('test.jpg') # Made this just test.jpg so we dont overuse memory
-        camera.capture(picture)
-        os.system("bash -c 'ping -w 1 umbc.edu'")
-        #ping umbc.edu
-
+    
+    camera.start_preview()
+        
+    #Used to take a still picture
+    picture = ('test.jpg') # Made this just test.jpg so we dont overuse memory
+    camera.capture(picture)
+    os.system("bash -c 'ping -w 1 umbc.edu'")
     camera.stop_preview()
     
     # --------------------------------------------
@@ -185,11 +156,39 @@ def TakePictures():
 # Main function that will run all rear module processes
 # ----------------------------------------------------------------------
 def main():
-    cameraProcess = Process(target=TakePictures) # may need to add ", args=()" inside parenthesis
-    sensorsProcess = Process(target=SideSensors) # may need to add ", args=()" inside parenthesis
-    cameraProcess.start()
-    sensorsProcess.start()
-    cameraProcess.join()
-    sensorsProcess.join()
     
+    # Wrap main content in a try block so we can
+    # catch the user pressing CTRL-C and run the
+    # GPIO cleanup function. This will also prevent
+    # the user seeing lots of unnecessary error
+    # messages.
+    
+    try:
+        # Use BCM GPIO references
+        # instead of physical pin numbers
+        GPIO.setmode(GPIO.BCM)
+        
+        # Set pins as output and input 
+        GPIO.setup(GPIO_TRIGGER1,GPIO.OUT)    # Trigger 1
+        GPIO.setup(GPIO_ECHO1,GPIO.IN)        # Echo 1
+        GPIO.setup(GPIO_TRIGGER2,GPIO.OUT)    # Tigger Trigger 2 
+        GPIO.setup(GPIO_ECHO2,GPIO.IN)        # ECHO 2
+        
+        # Set trigger to False (Low)
+        GPIO.output(GPIO_TRIGGER1, False)
+        GPIO.output(GPIO_TRIGGER2, False)
+        
+        time.sleep(0.5)                       # allow module to settle
+
+        while True:
+            UpdateSideSensors()
+            sleep(0.25)                        # 0.25s for now maybe decrease in the end
+            TakePicture()
+            sleep(0.5)                        # 0.25s for now maybe decrease in the end
+
+    except KeyboardInterrupt:
+        # User pressed CTRL-C
+        # Reset GPIO settings
+        GPIO.cleanup()
+
 main()

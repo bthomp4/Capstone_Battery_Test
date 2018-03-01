@@ -140,22 +140,22 @@ def SideSensors():
     # messages.
     try:
         print("Distance Sensor 1\tDistance Sensor 2") 
-    while True:
-        distance1 = measure_average1()
-        os.system("bash -c 'ping -w 1 umbc.edu'")
-        #ping umbc.edu
+        while True:
+            distance1 = measure_average1()
+            os.system("bash -c 'ping -w 1 umbc.edu'")
+            #ping umbc.edu
     
-        distance2 = measure_average2()
-        os.system("bash -c 'ping -w 1 umbc.edu'")
-        #ping -w 1 umbc.edu
+            distance2 = measure_average2()
+            os.system("bash -c 'ping -w 1 umbc.edu'")
+            #ping -w 1 umbc.edu
     
-        print(int(distance1), "inches\t\t", int(distance2), "inches")
-        time.sleep(0.5)
+            print(int(distance1), "inches\t\t", int(distance2), "inches")
+            time.sleep(0.5)
 
     except KeyboardInterrupt:
-    # User pressed CTRL-C
-    # Reset GPIO settings
-    GPIO.cleanup()
+        # User pressed CTRL-C
+        # Reset GPIO settings
+        GPIO.cleanup()
     
 # -----------------------------------------------------------------
 # Main Script for taking pictures with the camera

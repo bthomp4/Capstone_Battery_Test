@@ -138,87 +138,87 @@ def updateLEDs():
     # messages.
     try:
         print("Distance Recorded at Front Sensor") 
-    while True:
+        while True:
         
-        # Get Distance data from front sensor
-        distance = measure_average()
+            # Get Distance data from front sensor
+            distance = measure_average()
     
-        print(int(distance), "inches\n")
+            print(int(distance), "inches\n")
         
-        # Turn on front LEDs as needed
-        if distance > 100:
-            GPIO.output(GPIO_FRONTLED1, False)
-            GPIO.output(GPIO_FRONTLED2, False)
-            GPIO.output(GPIO_FRONTLED3, False)
-            GPIO.output(GPIO_FRONTLED4, False)
-            GPIO.output(GPIO_FRONTLED5, False)
-            GPIO.output(GPIO_FRONTLED6, False)
-            GPIO.output(GPIO_FRONTLED7, False)
-            GPIO.output(GPIO_FRONTLED8, False)
-            GPIO.output(GPIO_FRONTLED9, False)
-            GPIO.output(GPIO_FRONTLED10, False)
-        if distance <= 1200:
-            GPIO.output(GPIO_FRONTLED1, True)
-        else:
-            GPIO.output(GPIO_FRONTLED1, False)
-        if distance <= 1080:
-            GPIO.output(GPIO_FRONTLED2, True)
-        else:
-            GPIO.output(GPIO_FRONTLED2, False)
-        if distance <= 960:
-            GPIO.output(GPIO_FRONTLED3, True)
-        else:
-            GPIO.output(GPIO_FRONTLED3, False)
-        if distance <= 840:
-            GPIO.output(GPIO_FRONTLED4, True)
-        else:
-            GPIO.output(GPIO_FRONTLED4, False)
-        if distance <= 720:
-            GPIO.output(GPIO_FRONTLED5, True)
-        else:
-            GPIO.output(GPIO_FRONTLED5, False)
-        if distance <= 600:
-            GPIO.output(GPIO_FRONTLED6, True)
-        else:
-            GPIO.output(GPIO_FRONTLED6, False)
-        if distance <= 480:
-            GPIO.output(GPIO_FRONTLED7, True)
-        else:
-            GPIO.output(GPIO_FRONTLED7, False)
-        if distance <= 360:
-            GPIO.output(GPIO_FRONTLED8, True)
-        else:
-            GPIO.output(GPIO_FRONTLED8, False)
-        if distance <= 240:
-            GPIO.output(GPIO_FRONTLED9, True)
-        else:
-            GPIO.output(GPIO_FRONTLED9, False)  
-        if distance <= 120:
-            GPIO.output(GPIO_FRONTLED10, True)
-        else:
-            GPIO.output(GPIO_FRONTLED10, False)
+            # Turn on front LEDs as needed
+            if distance > 100:
+                GPIO.output(GPIO_FRONTLED1, False)
+                GPIO.output(GPIO_FRONTLED2, False)
+                GPIO.output(GPIO_FRONTLED3, False)
+                GPIO.output(GPIO_FRONTLED4, False)
+                GPIO.output(GPIO_FRONTLED5, False)
+                GPIO.output(GPIO_FRONTLED6, False)
+                GPIO.output(GPIO_FRONTLED7, False)
+                GPIO.output(GPIO_FRONTLED8, False)
+                GPIO.output(GPIO_FRONTLED9, False)
+                GPIO.output(GPIO_FRONTLED10, False)
+            if distance <= 1200:
+                GPIO.output(GPIO_FRONTLED1, True)
+            else:
+                GPIO.output(GPIO_FRONTLED1, False)
+            if distance <= 1080:
+                GPIO.output(GPIO_FRONTLED2, True)
+            else:
+                GPIO.output(GPIO_FRONTLED2, False)
+            if distance <= 960:
+                GPIO.output(GPIO_FRONTLED3, True)
+            else:
+                GPIO.output(GPIO_FRONTLED3, False)
+            if distance <= 840:
+                GPIO.output(GPIO_FRONTLED4, True)
+            else:
+                GPIO.output(GPIO_FRONTLED4, False)
+            if distance <= 720:
+                GPIO.output(GPIO_FRONTLED5, True)
+            else:
+                GPIO.output(GPIO_FRONTLED5, False)
+            if distance <= 600:
+                GPIO.output(GPIO_FRONTLED6, True)
+            else:
+                GPIO.output(GPIO_FRONTLED6, False)
+            if distance <= 480:
+                GPIO.output(GPIO_FRONTLED7, True)
+            else:
+                GPIO.output(GPIO_FRONTLED7, False)
+            if distance <= 360:
+                GPIO.output(GPIO_FRONTLED8, True)
+            else:
+                GPIO.output(GPIO_FRONTLED8, False)
+            if distance <= 240:
+                GPIO.output(GPIO_FRONTLED9, True)
+            else:
+                GPIO.output(GPIO_FRONTLED9, False)  
+            if distance <= 120:
+                GPIO.output(GPIO_FRONTLED10, True)
+            else:
+                GPIO.output(GPIO_FRONTLED10, False)
             
-        # Get distance data from rear module and process
-        os.system("bash -c 'ping -w 1 umbc.edu'")
-        os.system("bash -c 'ping -w 1 umbc.edu'")
-        rightDistance = randint(1,2000) # rand for now later will be obtained from rear
-        leftDistance = randint(1,2000) # also a temporary rand
+            # Get distance data from rear module and process
+            os.system("bash -c 'ping -w 1 umbc.edu'")
+            os.system("bash -c 'ping -w 1 umbc.edu'")
+            rightDistance = randint(1,2000) # rand for now later will be obtained from rear
+            leftDistance = randint(1,2000) # also a temporary rand
         
-        if rightDistance <= 120:
-            GPIO.output(GPIO_LEDSRIGHT, True)
-        else:
-            GPIO.output(GPIO_LEDSRIGHT, False)
-        if leftDistance <= 120:
-            GPIO.output(GPIO_LEDSLEFT, True)
-        else:
-            GPIO.output(GPIO_LEDSLEFT, False)
+            if rightDistance <= 120:
+                GPIO.output(GPIO_LEDSRIGHT, True)
+            else:
+                GPIO.output(GPIO_LEDSRIGHT, False)
+            if leftDistance <= 120:
+                GPIO.output(GPIO_LEDSLEFT, True)
+            else:
+                GPIO.output(GPIO_LEDSLEFT, False)
         
-        time.sleep(0.25) # sleep for a tenth of a second
+            time.sleep(0.25) # sleep for a tenth of a second
 
     except KeyboardInterrupt:
-    # User pressed CTRL-C
-    # Reset GPIO settings
-    GPIO.cleanup()
+        # User pressed CTRL-C
+        # Reset GPIO settings
+        GPIO.cleanup()
 
 # ----------------------------------------------------------------------
 # Main function that will run all front module processes

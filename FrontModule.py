@@ -27,20 +27,20 @@ from multiprocessing import Process
 from random import randint  # delete this later
 
 # GPIO pins and their purpose
-def GPIO_TRIGGER           = 23    # Trigger for ultrasonic sensor
-def GPIO_ECHO              = 20    # Echo for ultrasonic sensor
-def GPIO_LEDSRIGHT         = 21    # LEDS will light up at same time so one GPIO is needed
-def GPIO_LEDSLEFT          = 27    # LEDS will light up at same time so one GPIO is needed
-def GPIO_FRONTLED1         = 2
-def GPIO_FRONTLED2         = 3
-def GPIO_FRONTLED3         = 4
-def GPIO_FRONTLED4         = 17
-def GPIO_FRONTLED5         = 27
-def GPIO_FRONTLED6         = 22
-def GPIO_FRONTLED7         = 10
-def GPIO_FRONTLED8         = 9
-def GPIO_FRONTLED9         = 11
-def GPIO_FRONTLED10        = 0
+GPIO_TRIGGER           = 23    # Trigger for ultrasonic sensor
+GPIO_ECHO              = 20    # Echo for ultrasonic sensor
+GPIO_LEDSRIGHT         = 21    # LEDS will light up at same time so one GPIO is needed
+GPIO_LEDSLEFT          = 27    # LEDS will light up at same time so one GPIO is needed
+GPIO_FRONTLED1         = 2
+GPIO_FRONTLED2         = 3
+GPIO_FRONTLED3         = 4
+GPIO_FRONTLED4         = 17
+GPIO_FRONTLED5         = 27
+GPIO_FRONTLED6         = 22
+GPIO_FRONTLED7         = 10
+GPIO_FRONTLED8         = 9
+GPIO_FRONTLED9         = 11
+GPIO_FRONTLED10        = 0
 
 # ---------------------------------------------------
 # measure takes a measurement from the front sensor

@@ -25,13 +25,13 @@ from picamera import PiCamera
 import os
 
 # Define GPIO to use on Pi
-def GPIO_TRIGGER1 = 23
-def GPIO_ECHO1    = 24
-def GPIO_TRIGGER2 = 5
-def GPIO_ECHO2    = 6
+GPIO_TRIGGER1 = 23
+GPIO_ECHO1    = 24
+GPIO_TRIGGER2 = 5
+GPIO_ECHO2    = 6
 
 # Speed of sound in in/s at temperature
-def speedSound = 13500 # in/s
+speedSound = 13500 # in/s
 
 
 # ---------------------------------------------------

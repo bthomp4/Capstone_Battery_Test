@@ -33,6 +33,8 @@ GPIO_ECHO2    = 6
 # Speed of sound in in/s at temperature
 speedSound = 13500 # in/s
 
+camera = PiCamera()
+
 
 # ---------------------------------------------------
 # measure1 takes a measurement from the first sensor
@@ -139,7 +141,7 @@ def UpdateSideSensors():
 # -----------------------------------------------------------------
 def TakePicture(): 
 
-    camera = PiCamera()
+    #camera = PiCamera()
     
     camera.start_preview()
         

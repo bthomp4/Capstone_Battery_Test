@@ -79,11 +79,18 @@ def measure_average():
     distance = distance / 3
     return distance
 
-def pictureDisplay():
+def pictureDisplayA():
     # Get picture message
     os.system("bash -c 'ping -w 1 umbc.edu'")
     # Display picture
-    image = open('test.jpg','wb')   #os.system("bash -c 'xdg-open test.jpg")?
+    image = open('testA.jpg','wb')   #os.system("bash -c 'xdg-open test.jpg")?
+    image_read = image.read()
+    
+def pictureDisplayB():
+    # Get picture message
+    os.system("bash -c 'ping -w 1 umbc.edu'")
+    # Display picture
+    image = open('testB.jpg','wb')   #os.system("bash -c 'xdg-open test.jpg")?
     image_read = image.read()
 
 def updateLEDs():
@@ -219,11 +226,13 @@ def main():
     
     try:
         while True:
-            pictureDisplay()
+            pictureDisplayA()
             sleep(0.25)         # sleep for half a second. This may decrease later
             updateLEDs()
             sleep(0.25)         # sleep for half a second. This may decrease later
-        
+            pictureDisplayB()
+            sleep(0.25)
+                    
     except KeyboardInterrupt:
         # User pressed CTRL-C
         # Reset GPIO settings

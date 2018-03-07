@@ -22,6 +22,7 @@ import time
 import RPi.GPIO as GPIO
 from picamera import PiCamera
 import os
+from time import sleep
 
 # Define GPIO to use on Pi
 GPIO_TRIGGER1 = 23
@@ -31,6 +32,8 @@ GPIO_ECHO2    = 6
 
 # Speed of sound in in/s at temperature
 speedSound = 13500 # in/s
+
+camera = PiCamera()
 
 
 # ---------------------------------------------------
@@ -138,7 +141,7 @@ def UpdateSideSensors():
 # -----------------------------------------------------------------
 def TakePicture(): 
 
-    camera = PiCamera()
+    #camera = PiCamera()
     
     camera.start_preview()
         

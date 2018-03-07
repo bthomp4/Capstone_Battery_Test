@@ -1,0 +1,56 @@
+PING UMBC.EDU (130.85.12.160) 56(84) bytes of data.
+
+--- UMBC.EDU ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+PING UMBC.EDU (130.85.12.160) 56(84) bytes of data.
+
+--- UMBC.EDU ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+PING UMBC.EDU (130.85.12.160) 56(84) bytes of data.
+
+--- UMBC.EDU ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+PING UMBC.EDU (130.85.12.160) 56(84) bytes of data.
+
+--- UMBC.EDU ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+PING UMBC.EDU (130.85.12.160) 56(84) bytes of data.
+
+--- UMBC.EDU ping statistics ---
+1 packets transmitted, 0 received, 100% packet loss, time 0ms
+
+mmal: mmal_vc_port_enable: failed to enable port vc.null_sink:in:0(OPQV): ENOSPC
+mmal: mmal_port_enable: failed to enable connected port (vc.null_sink:in:0(OPQV))0xced5d0 (ENOSPC)
+mmal: mmal_connection_enable: output port couldn't be enabled
+RearModule.py:173: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(GPIO_TRIGGER1,GPIO.OUT)    # Trigger 1
+RearModule.py:175: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(GPIO_TRIGGER2,GPIO.OUT)    # Tigger Trigger 2
+Ultrasonic Measurement
+Distance Sensor 1	Distance Sensor 2
+89 inches		 31 inches
+Ultrasonic Measurement
+Distance Sensor 1	Distance Sensor 2
+33 inches		 30 inches
+Traceback (most recent call last):
+  File "RearModule.py", line 195, in <module>
+    main()
+  File "RearModule.py", line 187, in main
+    TakePicture()
+  File "RearModule.py", line 142, in TakePicture
+    camera = PiCamera()
+  File "/usr/lib/python3/dist-packages/picamera/camera.py", line 433, in __init__
+    self._init_preview()
+  File "/usr/lib/python3/dist-packages/picamera/camera.py", line 513, in _init_preview
+    self, self._camera.outputs[self.CAMERA_PREVIEW_PORT])
+  File "/usr/lib/python3/dist-packages/picamera/renderers.py", line 558, in __init__
+    self.renderer.inputs[0].connect(source).enable()
+  File "/usr/lib/python3/dist-packages/picamera/mmalobj.py", line 2212, in enable
+    prefix="Failed to enable connection")
+  File "/usr/lib/python3/dist-packages/picamera/exc.py", line 184, in mmal_check
+    raise PiCameraMMALError(status, prefix)
+picamera.exc.PiCameraMMALError: Failed to enable connection: Out of resources

@@ -22,6 +22,7 @@ import time
 import RPi.GPIO as GPIO
 from picamera import PiCamera
 import os
+from time import sleep
 
 # Define GPIO to use on Pi
 GPIO_TRIGGER1 = 23
